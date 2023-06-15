@@ -17,17 +17,10 @@ public class MyFirstProgram {
 
 
 
-    Point p1 = new Point();
-    p1.x1 = 6;
-    p1.y1 = 2;
+    Point p1 = new Point(-3, 0);
+    Point p2 = new Point(6, -8);
 
-    Point p2 = new Point();
-    p2.x2 = -5;
-    p2.y2 = 1;
-
-    Point d = new Point();
-
-        out.println("Расстояние между точками p1 и p2 = " + d.distance(p1, p2));
+        out.println("Расстояние между точками с координатами " + p1.x + ", " + p1.y + " и " + p2.x + ", " + p2.y + " = " + p1.distance(p2));
   }
 
   public static void hello(String somebody) {

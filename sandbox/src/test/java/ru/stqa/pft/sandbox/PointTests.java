@@ -3,26 +3,20 @@ package ru.stqa.pft.sandbox;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import static java.awt.geom.Point2D.distance;
+
 public class PointTests {
   @Test
 
   public void testArea() {
-    Point p1 = new Point();
-    p1.x1 = 6;
-    p1.y1 = 2;
+    Point p1 = new Point(-3, 0);
+    Point p2 = new Point(6, -8);
 
-    Point p2 = new Point();
-    p2.x2 = -5;
-    p2.y2 = 1;
+    Assert.assertEquals(p1.distance(p2), 12.041594578792296);
 
-    Point d = new Point();
-    Assert.assertEquals(d.distance(p1, p2), 11.045361017187261);
+    p1 = new Point(-1, 0);
+    p2 = new Point(-3, -5);
 
-    p1.x1 = 1;
-    p1.y1 = 2;
-    p2.x2 = 0;
-    p2.y2 = 6;
-    Assert.assertEquals(d.distance(p1, p2), 4.123105625617661);
-
+    Assert.assertEquals(p1.distance(p2), 5.385164807134504);
   }
 }
