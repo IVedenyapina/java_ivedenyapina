@@ -6,7 +6,7 @@ import org.testng.annotations.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class HomeworkGroupCreationTests {
+public class ContactCreationTests {
   private WebDriver wd;
 
   @BeforeMethod(alwaysRun = true)
@@ -27,7 +27,7 @@ public class HomeworkGroupCreationTests {
   }
 
   @Test
-  public void testHomeworkGroupCreation() throws Exception {
+  public void testContactCreation() throws Exception {
     gotoAddNewPage();
     fillContactForm(new ContactData("Ирина", "Веденяпина", "+79273712441", "ivedenyapina@yandex.ru"));
     submitContactCreation();
