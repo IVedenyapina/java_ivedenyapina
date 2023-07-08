@@ -18,7 +18,11 @@ public class ContactHelper {
   }
 
   public void submitContactCreation() {
-    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
+
+  private void click(By locator) {
+    wd.findElement(locator).click();
   }
 
   public void fillContactForm(ContactData contactData) {
@@ -29,7 +33,7 @@ public class ContactHelper {
   }
 
   private void type(By locator, String text) {
-    wd.findElement(locator).click();
+    click(locator);
     wd.findElement(locator).clear();
     wd.findElement(locator).sendKeys(text);
   }
@@ -72,10 +76,10 @@ public class ContactHelper {
   }
 
   public void deleteSelectedContact() {
-    wd.findElement(By.xpath("//input[@value='Delete']")).click();
+    click(By.xpath("//input[@value='Delete']"));
   }
 
   public void selectContact() {
-    wd.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 }

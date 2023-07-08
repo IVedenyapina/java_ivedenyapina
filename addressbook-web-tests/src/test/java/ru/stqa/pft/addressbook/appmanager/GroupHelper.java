@@ -11,8 +11,11 @@ public class GroupHelper {
     this.wd = wd;
   }
 
-  public void submitGroupCreation() {
-    wd.findElement(By.name("submit")).click();
+  public void submitGroupCreation() { click(By.name("submit"));
+  }
+
+  private void click(By locator) {
+    wd.findElement(locator).click();
   }
 
   public void fillGroupForm(GroupData groupData) {
@@ -22,24 +25,24 @@ public class GroupHelper {
   }
 
   private void type(By locator, String text) {
-    wd.findElement(locator).click();
+    click(locator);
     wd.findElement(locator).clear();
     wd.findElement(locator).sendKeys(text);
   }
 
   public void initGroupCreation() {
-    wd.findElement(By.name("new")).click();
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroups() {
-    wd.findElement(By.name("delete")).click();
+    click(By.name("delete"));
   }
 
   public void selectGroup() {
-    wd.findElement(By.name("selected[]")).click();
+    click(By.name("selected[]"));
   }
 
   public void returnToHomePage() {
-    wd.findElement(By.linkText("home")).click();
+    click(By.linkText("home"));
   }
 }
