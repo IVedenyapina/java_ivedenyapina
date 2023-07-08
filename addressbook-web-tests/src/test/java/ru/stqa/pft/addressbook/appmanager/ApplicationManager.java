@@ -5,8 +5,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
 
-import static org.testng.Assert.assertTrue;
-
 public class ApplicationManager {
   FirefoxDriver wd;
   private ContactHelper contactHelper;

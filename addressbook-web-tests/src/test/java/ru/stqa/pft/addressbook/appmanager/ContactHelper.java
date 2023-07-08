@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.pft.addressbook.model.ContactData;
@@ -25,24 +24,6 @@ public class ContactHelper extends HelperBase{
     type(By.name("lastname"), contactData.lastname());
     type(By.name("mobile"), contactData.mobilephone());
     type(By.name("email"), contactData.email());
-  }
-
-  public boolean isElementPresent(By by) {
-    try {
-      wd.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
-
-  public boolean isAlertPresent() {
-    try {
-      wd.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
   }
 
   public String closeAlertAndGetItsText() {
@@ -70,5 +51,14 @@ public class ContactHelper extends HelperBase{
 
   public void selectContact() {
     click(By.name("selected[]"));
+  }
+
+  public boolean isElementPresent(By by) {
+    try {
+      wd.findElement(by);
+      return true;
+    } catch (NoSuchElementException e) {
+      return false;
+    }
   }
 }
