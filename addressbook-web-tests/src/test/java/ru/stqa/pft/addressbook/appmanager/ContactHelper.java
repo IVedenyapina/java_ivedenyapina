@@ -9,20 +9,15 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import static org.testng.Assert.assertTrue;
 
-public class ContactHelper {
+public class ContactHelper extends HelperBase{
   public boolean acceptNextAlert = true;
- private FirefoxDriver wd;
 
   public ContactHelper(FirefoxDriver wd) {
-    this.wd  = wd;
+    super(wd);
   }
 
   public void submitContactCreation() {
     click(By.xpath("//div[@id='content']/form/input[21]"));
-  }
-
-  private void click(By locator) {
-    wd.findElement(locator).click();
   }
 
   public void fillContactForm(ContactData contactData) {
@@ -30,12 +25,6 @@ public class ContactHelper {
     type(By.name("lastname"), contactData.lastname());
     type(By.name("mobile"), contactData.mobilephone());
     type(By.name("email"), contactData.email());
-  }
-
-  private void type(By locator, String text) {
-    click(locator);
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
   }
 
   public boolean isElementPresent(By by) {

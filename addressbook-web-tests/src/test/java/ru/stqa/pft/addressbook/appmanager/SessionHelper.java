@@ -3,11 +3,10 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class SessionHelper {
-  private final FirefoxDriver wd;
+public class SessionHelper extends HelperBase {
 
   public SessionHelper(FirefoxDriver wd) {
-    this.wd = wd;
+    super(wd);
   }
   public void login(String username, String password) {
     wd.get("http://localhost:8080/addressbook/group.php");
