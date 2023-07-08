@@ -61,4 +61,14 @@ public class ContactHelper extends HelperBase{
       return false;
     }
   }
+  public void returnToHomePage() {
+    click(By.linkText("home"));
+  }
+  public void initContactModification() {
+    click(By.xpath("//img[@alt='Edit']"));
+  }
+
+  public void submitContactModification() {
+    click(By.xpath("//div[@id='content']/form/input[22]"));
+  }
 }

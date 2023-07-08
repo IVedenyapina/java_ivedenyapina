@@ -31,11 +31,7 @@ public class GroupHelper extends HelperBase {
     click(By.name("selected[]"));
   }
 
-  public void returnToHomePage() {
-    click(By.linkText("home"));
-  }
-
-  public void initGroupModification() {
+   public void initGroupModification() {
     click(By.name("edit"));
   }
 
