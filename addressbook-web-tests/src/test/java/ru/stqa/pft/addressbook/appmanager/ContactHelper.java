@@ -2,8 +2,8 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.Select;
 import ru.stqa.pft.addressbook.model.ContactData;
 
 import static org.testng.Assert.assertTrue;
@@ -20,10 +20,14 @@ public class ContactHelper extends HelperBase{
   }
 
   public void fillContactForm(ContactData contactData) {
-    type(By.name("firstname"), contactData.firstname());
-    type(By.name("lastname"), contactData.lastname());
-    type(By.name("mobile"), contactData.mobilephone());
-    type(By.name("email"), contactData.email());
+    type(By.name("firstname"), contactData.getFirstname());
+    type(By.name("lastname"), contactData.getLastname());
+    type(By.name("mobile"), contactData.getMobilephone());
+    type(By.name("email"), contactData.getEmail());
+
+    if (isElementPresent(By.name("new_group"))) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    }
   }
 
   public String closeAlertAndGetItsText() {
@@ -40,7 +44,6 @@ public class ContactHelper extends HelperBase{
       acceptNextAlert = true;
     }
   }
-
   public void confirmDeletion() {
     assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
@@ -53,14 +56,6 @@ public class ContactHelper extends HelperBase{
     click(By.name("selected[]"));
   }
 
-  public boolean isElementPresent(By by) {
-    try {
-      wd.findElement(by);
-      return true;
-    } catch (NoSuchElementException e) {
-      return false;
-    }
-  }
   public void returnToHomePage() {
     click(By.linkText("home"));
   }
