@@ -55,17 +55,20 @@ public class ContactHelper extends HelperBase{
   }
 
   public void selectContact() {
-    click(By.name("selected[]"));
-  }
+    click(By.name("selected[]"));  }
 
-  public void returnToHomePage() {
-    click(By.linkText("home"));
-  }
-  public void initContactModification() {
+    public void initContactModification() {
     click(By.xpath("//img[@alt='Edit']"));
   }
 
   public void submitContactModification() {
     click(By.xpath("//div[@id='content']/form/input[22]"));
+  }
+
+  public void returnToHomePage() {
+    if (isElementPresent(By.id("maintable"))) {
+      return;
+    }
+    click(By.linkText("home"));
   }
 }
