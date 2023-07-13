@@ -3,13 +3,18 @@ package ru.stqa.pft.addressbook.appmanager;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.testng.Assert.assertTrue;
 
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
   public boolean acceptNextAlert = true;
 
   public ContactHelper(WebDriver wd) {
@@ -21,18 +26,19 @@ public class ContactHelper extends HelperBase{
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-    type(By.name("firstname"), contactData.getFirstname());
-    type(By.name("lastname"), contactData.getLastname());
-    type(By.name("mobile"), contactData.getMobilephone());
-    type(By.name("email"), contactData.getEmail());
+    type(By.name("firstname"), contactData.firstname());
+    type(By.name("lastname"), contactData.lastname());
+    type(By.name("mobile"), contactData.mobilephone());
+    type(By.name("email"), contactData.email());
 
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.group());
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
     }
   }
-    public String closeAlertAndGetItsText() {
+
+  public String closeAlertAndGetItsText() {
     try {
       Alert alert = wd.switchTo().alert();
       String alertText = alert.getText();
@@ -46,6 +52,7 @@ public class ContactHelper extends HelperBase{
       acceptNextAlert = true;
     }
   }
+
   public void confirmDeletion() {
     assertTrue(closeAlertAndGetItsText().matches("^Delete 1 addresses[\\s\\S]$"));
   }
@@ -58,7 +65,7 @@ public class ContactHelper extends HelperBase{
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-    public void initContactModification() {
+  public void initContactModification() {
     click(By.xpath("//img[@alt='Edit']"));
   }
 
@@ -78,11 +85,24 @@ public class ContactHelper extends HelperBase{
     submitContactCreation();
     returnToHomePage();
   }
+
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
   }
 
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements) {
+      String firstname = element.getText();
+      String lastname = element.getText();
+      ContactData contact = new ContactData(firstname, lastname, "+79273712441", "ivedenyapina@yandex.ru", "Test44");
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }

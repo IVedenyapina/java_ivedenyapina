@@ -1,8 +1,8 @@
 package ru.stqa.pft.addressbook.model;
 
-import org.openqa.selenium.By;
+import java.util.Objects;
 
-public class ContactData {
+public final class ContactData {
   private final String firstname;
   private final String lastname;
   private final String mobilephone;
@@ -17,19 +17,51 @@ public class ContactData {
     this.group = group;
   }
 
-  public String getFirstname() {
+  public String firstname() {
     return firstname;
   }
-  public String getLastname() {
+
+  public String lastname() {
     return lastname;
   }
-  public String getMobilephone() {
+
+  public String mobilephone() {
     return mobilephone;
   }
-  public String getEmail() {
+
+  public String email() {
     return email;
   }
-  public String getGroup() {
+
+  public String group() {
     return group;
   }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (obj == this) return true;
+    if (obj == null || obj.getClass() != this.getClass()) return false;
+    var that = (ContactData) obj;
+    return Objects.equals(this.firstname, that.firstname) &&
+            Objects.equals(this.lastname, that.lastname) &&
+            Objects.equals(this.mobilephone, that.mobilephone) &&
+            Objects.equals(this.email, that.email) &&
+            Objects.equals(this.group, that.group);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(firstname, lastname, mobilephone, email, group);
+  }
+
+  @Override
+  public String toString() {
+    return "ContactData[" +
+            "firstname=" + firstname + ", " +
+            "lastname=" + lastname + ", " +
+            "mobilephone=" + mobilephone + ", " +
+            "email=" + email + ", " +
+            "group=" + group + ']';
+  }
+
 }
