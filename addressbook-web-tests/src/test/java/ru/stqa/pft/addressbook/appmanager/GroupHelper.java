@@ -58,9 +58,6 @@ public class GroupHelper extends HelperBase {
     return isElementPresent(By.name("selected[]"));
   }
 
-  public int getGroupCount() {
-   return wd.findElements(By.name("selected[]")).size();
-  }
 
   public List<GroupData> getGroupList() {
     List<GroupData> groups = new ArrayList<GroupData>();
@@ -71,5 +68,9 @@ public class GroupHelper extends HelperBase {
       groups.add(group);
     }
     return groups;
+  }
+
+  public boolean isThereAGroup44(String test44) {
+    return isElementPresent(By.name("selected[]"));
   }
 }
