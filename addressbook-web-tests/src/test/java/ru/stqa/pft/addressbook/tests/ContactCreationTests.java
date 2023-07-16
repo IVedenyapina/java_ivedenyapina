@@ -16,8 +16,10 @@ public class ContactCreationTests extends TestBase {
       app.getGroupHelper().createGroup(new GroupData("Test111", null, null));
     }
     app.getNavigationHelper().gotoAddNewPage();
-    app.getContactHelper().createContact(new ContactData("Ирина", "Веденяпина", "+79273712441", "ivedenyapina@yandex.ru", "Test111"));
+    app.getContactHelper().createContact(new ContactData("Олег", "Олегов", null, null, "Test111"));
     List<ContactData> after = app.getContactHelper().getContactList();
     Assert.assertEquals(after.size(), before.size() + 1);
+
+
       }
 }
