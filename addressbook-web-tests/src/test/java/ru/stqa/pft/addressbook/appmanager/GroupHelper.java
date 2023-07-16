@@ -55,8 +55,9 @@ public class GroupHelper extends HelperBase {
   }
 
   public boolean isThereAGroup() {
-    return isElementPresent(By.name("selected[]"));
+    return isElementPresent(By.name("span[@class=\"group\"][.=\"Test111"));
   }
+
 
 
   public List<GroupData> getGroupList() {
@@ -69,9 +70,5 @@ public class GroupHelper extends HelperBase {
       groups.add(group);
     }
     return groups;
-  }
-
-  public boolean isThereAGroup44(String test44) {
-    return isElementPresent(By.name("selected[]"));
   }
 }
